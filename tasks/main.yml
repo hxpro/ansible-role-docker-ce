@@ -13,6 +13,18 @@
       - docker-ce
       - docker-ce-cli
 
+- name: Install python-docker-py for EL7
+  package:
+    name:
+      - python-docker-py
+  when: ansible_distribution_major_version == "7"
+
+- name: Install python3-docker for EL8
+  package:
+    name:
+      - python3-docker
+  when: ansible_distribution_major_version == "8"
+
 - name: Start / enable docker service
   systemd:
     name: docker
